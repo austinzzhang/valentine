@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffebee;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #d32f2f;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4081;
+      font-size: 20px;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 0 10px;
+      transition: transform 0.2s;
+    }
+
+    #yes {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    #no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will you be my valentine 莉莉? 💕</h1>
+    <div class="buttons">
+      <button id="yes">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <div class="hearts">
+    <!-- Hearts will be generated here -->
+  </div>
+
+  <script>
+    // Function to create floating hearts
+    function createHearts() {
+      const heartsContainer = document.querySelector('.hearts');
+      for (let i = 0; i < 50; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.top = `${Math.random() * 100}vh`;
+        heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        heartsContainer.appendChild(heart);
+      }
+    }
+
+    // Function to move the "No" button
+    function moveNoButton() {
+      const noButton = document.getElementById('no');
+      const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+    }
+
+    // Event listener for the "No" button
+    document.getElementById('no').addEventListener('mouseover', moveNoButton);
+
+    // Event listener for the "Yes" button
+    document.getElementById('yes').addEventListener('click', () => {
+      alert('Yay! 莉莉, you just made 璇璇 the happiest person ever! 💖');
+    });
+
+    // Create floating hearts on page load
+    createHearts();
+  </script>
+</body>
+</html>
